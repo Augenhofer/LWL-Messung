@@ -140,7 +140,8 @@ namespace LWL_Messung
 
                                         for (int i = 0; i < ds.Tables["Zone"].Rows.Count; i++)
                                         {
-                                            comm.Parameters.AddWithValue("@Zone" + (1 + i), Convert.ToDouble(ds.Tables["Zone"].Rows[i]["TAvg"].ToString().Replace(".", ",")));
+                                            //comm.Parameters.AddWithValue("@Zone" + (1 + i), Convert.ToDouble(ds.Tables["Zone"].Rows[i]["TAvg"].ToString().Replace(".", ",")));
+                                            comm.Parameters.AddWithValue("@Zone" + (1 + i), Convert.ToDouble(ds.Tables["tMax"].Rows[i]["tMax_Text"].ToString().Replace(".", ",")));
                                         }
 
                                         try
@@ -153,7 +154,7 @@ namespace LWL_Messung
                                         }
                                         catch (SqlException e)
                                         {
-                                            Console.WriteLine("Error: Insert der Daten fehlgeschlagen");
+                                            Console.WriteLine("Error: Insert der Daten fehlgeschlagen:" + e.Message);
                                             // do something with the exception
                                             // don't hide it
                                         }
